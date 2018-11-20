@@ -1,0 +1,13 @@
+{
+    "name": "www.yvesgurcan.com",
+    "description": "Personal website",
+    "author": "Yves Gurcan",
+    "version": "2.0.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/yvesgurcan/www.yvesgurcan.com-v2.git"
+    },
+    "main": "index.html",
+    "license": "MIT"
+  }
+  
