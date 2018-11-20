@@ -1,0 +1,11 @@
+#wheel {
+    user-select: none;
+}
+
+#values * {
+    display: none
+}
+
+.show {
+    display: block !important;
+}
