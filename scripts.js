@@ -40,11 +40,17 @@ const showDescription = function (event, target) {
     if (!targetId) {
         const parent = ref.parentElement;
         ref = parent;
-        targetId = parent.getAttribute('target')
+        targetId = parent.getAttribute('target');
 
         if (!targetId) {
-            console.error('No target ID.')
-            return false;
+            const grandparent = ref.parentElement;
+            ref = grandparent;
+            targetId = grandparent.getAttribute('target');
+
+            if (!targetId) {
+                console.error('Target attribute of event not found.');
+                return false;
+            }
         }
     }
 
@@ -52,12 +58,14 @@ const showDescription = function (event, target) {
 
     const bottomDescriptions = document.getElementById(BOTTOM_DESCRIPTIONS_ID);
 
+    let found = false
     for(let i = 0; i < bottomDescriptions.childNodes.length; i++) {
         const node = bottomDescriptions.childNodes[i];
         if (node.id === targetId) {
+            found = true
+            bottomClosed = false;
             const bottom = document.getElementById(BOTTOM_ID);
             if (node.style.display !== 'block' || bottomClosed) {
-                bottomClosed = false;
                 bottom.style.background = background;
                 bottom.style.display = 'block';
                 node.style.display = 'block';
@@ -69,20 +77,33 @@ const showDescription = function (event, target) {
             node.style.display = 'none';
         }
     }
+
+    if (!found) {
+        console.error(`Description of '#${targetId}' not found.`);
+    }
 }
 
 const hideDescription = function (event) {
-    bottomClosed = true;
     const bottom = document.getElementById(BOTTOM_ID);
     bottom.style.display = 'none';
-    const hash = window.location.hash.replace('#', '');
-    const bottomDescription = document.querySelectorAll(`[target="${hash}"]`);
     
-    if (bottomDescription.length > 0) {
-        showDescription(null, bottomDescription[0]);
-    }
-
-    history.replaceState(null, null, ' ');
+    setTimeout(() => {
+        const hash = window.location.hash.replace('#', '');
+        const bottomDescription = document.querySelectorAll(`[target="${hash}"]`);
+        if (hash && bottomDescription.length > 0) {
+            bottomClosed = true;
+            showDescription(null, bottomDescription[0]);
+        } else {
+            if (hash) {
+                console.error(`Target identifier of '#${hash}' not found.`);
+                bottomClosed = false;
+            } else {
+                bottomClosed = true;
+            }
+        }
+        
+        history.replaceState(null, null, ' ');
+    }, 100)
 }
 
 const nameElem = document.getElementById(NAME_ID);
