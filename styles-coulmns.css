@@ -15,56 +15,26 @@ a:hover {
 }
 
 #mosaic {
-    display: flex;
-    flex-wrap: wrap;
     width: 100vw;
     min-height: 100vh;
     font-weight: bold;
     column-count: 3;
-}
-
-.animate-shuffle {
-    animation: shuffle 1s ease-out;
-}
-
-.animate-shuffle-reverse {
-    animation: shuffle-reverse 1s ease-out;
-}
-
-@keyframes shuffle {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes shuffle-reverse {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+    column-fill: auto;
 }
 
 #mosaic > div {
-    display: flex;
     background: rgb(160, 130, 90);
     color: white;
     padding: 30px;
-    flex-grow: 1;
     margin: 2px;
     border-radius: 10px;
-    min-width: 200px;
-    justify-content: center;
+    font-size: 23px;
     align-items: center;
     flex-direction: column;
     font-size: 26px;
     cursor: pointer;
     transition: all .2s ease-out;
-    user-select: none;
+    break-inside: avoid;
 }
 
 
@@ -74,19 +44,12 @@ a:hover {
 }
 
 #mosaic > div:nth-child(3n) {
-    min-width: 240px;
 }
 
-#mosaic > div:nth-child(5n-1) {
-    min-width: 280px;
+#mosaic > div:nth-child(5n) {
 }
 
 #mosaic > div:nth-child(8n+6) {
-    min-width: 120px;
-}
-
-#mosaic > div.highlight0 {
-    max-width: 50px;
 }
 
 #mosaic > div.highlight1 {
@@ -101,7 +64,6 @@ a:hover {
 #mosaic > div.highlight2 {
     color: black;
     background: white;
-    min-width: 210px;
 }
 
 #mosaic > div.highlight3 {
@@ -116,7 +78,6 @@ a:hover {
 #mosaic > div.highlight4 {
     background: rgb(175, 75, 175);
     font-size: 32px;
-    max-width: 250px;
 }
 
 #mosaic > div.highlight4:hover {
@@ -128,10 +89,7 @@ a:hover {
 }
 
 div#brand {
-    flex-direction: column;
     background: white;
-    min-width: 280px;
-    min-height: 130px;
     cursor: auto;
 }
 
@@ -203,13 +161,13 @@ div#brand {
 #bottom {
     cursor: pointer;
     display: none;
+    background: white;
     position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 1;
     opacity: .9;
     border-top: 2px solid white;
-    transition: background-color .5s ease-out
 }
 
 #bottom-content {
@@ -220,15 +178,6 @@ div#brand {
 
 #bottom-descriptions div {
     display: none;
-}
-
-#bottom-descriptions a {
-    color: black;
-}
-
-#bottom-descriptions a:hover {
-    font-size: inherit;
-    color: rgb(180, 180, 180);
 }
 
 h3 {

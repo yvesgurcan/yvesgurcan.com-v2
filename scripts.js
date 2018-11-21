@@ -25,9 +25,18 @@ const toggleSorting = function () {
     }
 }
 
-const showDescription = function (event) {
-    let ref = event.target;
-    let targetId = ref.getAttribute('target')
+const showDescription = function (event, target) {
+    let ref;
+    let targetId;
+
+    if (target) {
+        ref = target;
+    } else {
+        ref = event.target;
+    }
+
+    console.log(ref)
+    targetId = ref.getAttribute('target')
 
     if (!targetId) {
         const parent = ref.parentElement;
@@ -47,7 +56,6 @@ const showDescription = function (event) {
     for(let i = 0; i < bottomDescriptions.childNodes.length; i++) {
         const node = bottomDescriptions.childNodes[i];
         if (node.id === targetId) {
-            console.log(bottomClosed, node.style.display)
             const bottom = document.getElementById(BOTTOM_ID);
             if (node.style.display !== 'block' || bottomClosed) {
                 bottomClosed = false;
@@ -68,6 +76,14 @@ const hideDescription = function (event) {
     bottomClosed = true;
     const bottom = document.getElementById(BOTTOM_ID);
     bottom.style.display = 'none';
+    const hash = window.location.hash.replace('#', '');
+    const bottomDescription = document.querySelectorAll(`[target="${hash}"]`);
+    
+    if (bottomDescription.length > 0) {
+        showDescription(null, bottomDescription[0]);
+    }
+
+    history.replaceState(null, null, ' ');
 }
 
 const nameElem = document.getElementById(NAME_ID);
