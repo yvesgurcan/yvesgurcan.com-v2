@@ -35,7 +35,6 @@ const showDescription = function (event, target) {
         ref = event.target;
     }
 
-    console.log(ref)
     targetId = ref.getAttribute('target')
 
     if (!targetId) {
