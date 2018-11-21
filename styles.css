@@ -9,6 +9,27 @@ a {
     transition: all .2s ease-out;
 }
 
+p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h3, h4 {
+    margin: 0;
+}
+
+h4 {
+    margin-top: 10px;
+}
+
+ul {
+    margin: 10px;
+}
+
+li {
+    margin: 4px;
+}
+
 a:hover {
     font-size: 30px;
     color: gray;
@@ -218,8 +239,13 @@ div#brand {
     color: white;
 }
 
-#bottom-descriptions div {
+#bottom-descriptions > div {
     display: none;
+}
+
+#bottom-descriptions article {
+    display: flex;
+    justify-content: space-between;
 }
 
 #bottom-descriptions a {
@@ -231,7 +257,12 @@ div#brand {
     color: rgb(180, 180, 180);
 }
 
-h3 {
-    margin: 0;
-    margin-bottom: 10px;
+#bottom-descriptions .media {
+    margin-left: 10px;
+}
+
+#bottom-descriptions .media img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 10px;
 }
