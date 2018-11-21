@@ -1,10 +1,9 @@
 const MOSAIC_ID = 'mosaic';
 const NAME_ID = 'name';
 const BOTTOM_ID = 'bottom';
-const BOTTOM_CLOSE_ID = 'bottom-close';
 const BOTTOM_DESCRIPTIONS_ID = 'bottom-descriptions';
 
-
+let bottomClosed = true;
 
 const toggleSorting = function () {
     const mosaicElem = document.getElementById(MOSAIC_ID)
@@ -27,28 +26,37 @@ const toggleSorting = function () {
 }
 
 const showDescription = function (event) {
-    const targetId = event.target.getAttribute('target')
-
-    const background = window.getComputedStyle(event.target, null).getPropertyValue('background-color');
+    let ref = event.target;
+    let targetId = ref.getAttribute('target')
 
     if (!targetId) {
-        console.error('No target ID.')
-        return false;
+        const parent = ref.parentElement;
+        ref = parent;
+        targetId = parent.getAttribute('target')
+
+        if (!targetId) {
+            console.error('No target ID.')
+            return false;
+        }
     }
+
+    const background = window.getComputedStyle(ref, null).getPropertyValue('background-color');
 
     const bottomDescriptions = document.getElementById(BOTTOM_DESCRIPTIONS_ID);
 
     for(let i = 0; i < bottomDescriptions.childNodes.length; i++) {
         const node = bottomDescriptions.childNodes[i];
         if (node.id === targetId) {
+            console.log(bottomClosed, node.style.display)
             const bottom = document.getElementById(BOTTOM_ID);
-            if (node.style.display === 'block') {
-                bottom.style.display = 'none';
-                node.style.display = 'none';
-            } else {
+            if (node.style.display !== 'block' || bottomClosed) {
+                bottomClosed = false;
                 bottom.style.background = background;
                 bottom.style.display = 'block';
                 node.style.display = 'block';
+            } else {
+                bottom.style.display = 'none';
+                node.style.display = 'none';
             }
         } else if (node.style && node.style.display !== 'none') {
             node.style.display = 'none';
@@ -57,6 +65,7 @@ const showDescription = function (event) {
 }
 
 const hideDescription = function (event) {
+    bottomClosed = true;
     const bottom = document.getElementById(BOTTOM_ID);
     bottom.style.display = 'none';
 }
@@ -72,5 +81,5 @@ for (let i = 0; i < mosaicNodes.length; i++) {
     mosaicNode.addEventListener('click', showDescription);
 }
 
-const bottomCloseElem = document.getElementById(BOTTOM_CLOSE_ID);
-bottomCloseElem.addEventListener('click', hideDescription);
+const bottomElem = document.getElementById(BOTTOM_ID);
+bottomElem.addEventListener('click', hideDescription);

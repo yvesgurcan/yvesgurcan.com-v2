@@ -63,6 +63,13 @@ a:hover {
     flex-direction: column;
     font-size: 26px;
     cursor: pointer;
+    transition: all .2s ease-out;
+}
+
+
+
+#mosaic > div:hover {
+    font-size: 30px;
 }
 
 #mosaic > div:nth-child(3n) {
@@ -82,6 +89,10 @@ a:hover {
     font-size: 36px;
 }
 
+#mosaic > div.highlight1:hover {
+    font-size: 40px;
+}
+
 #mosaic > div.highlight2 {
     color: black;
     background: white;
@@ -93,21 +104,17 @@ a:hover {
     font-size: 32px;
 }
 
+#mosaic > div.highlight3:hover {
+    font-size: 36px;
+}
+
 #mosaic > div.highlight4 {
     background: rgb(175, 75, 175);
     font-size: 32px;
 }
 
-#mosaic > div:not(#brand) div:nth-child(1) {
-    pointer-events: none;
-}
-
-#mosaic > div .description {
-    display: none;
-    font-weight: normal;
-    margin-top: 10px;
-    font-size: 20px;
-    pointer-events: none;
+#mosaic > div.highlight4:hover {
+    font-size: 36px;
 }
 
 .description-show {
@@ -188,6 +195,7 @@ div#brand {
 }
 
 #bottom {
+    cursor: pointer;
     display: none;
     background: white;
     position: fixed;
@@ -202,12 +210,6 @@ div#brand {
     padding: 30px;
     font-size: 21px;
     color: white;
-}
-
-#bottom-close {
-    text-align: right;
-    margin: -15px;
-    cursor: pointer;
 }
 
 #bottom-descriptions div {
