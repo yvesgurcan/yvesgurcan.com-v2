@@ -1,11 +1,220 @@
-#wheel {
-    user-select: none;
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
-#values * {
-    display: none
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all .2s ease-out;
 }
 
-.show {
+a:hover {
+    font-size: 30px;
+    color: gray;
+}
+
+#mosaic {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    min-height: 100vh;
+    font-weight: bold;
+}
+
+.animate-shuffle {
+    animation: shuffle 1s ease-out;
+}
+
+.animate-shuffle-reverse {
+    animation: shuffle-reverse 1s ease-out;
+}
+
+@keyframes shuffle {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes shuffle-reverse {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#mosaic > div {
+    display: flex;
+    background: rgb(160, 130, 90);
+    color: white;
+    padding: 30px;
+    flex-grow: 1;
+    margin: 2px;
+    border-radius: 10px;
+    font-size: 23px;
+    min-width: 200px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+#mosaic > div:nth-child(3n) {
+    min-width: 240px;
+}
+
+#mosaic > div:nth-child(5n) {
+    min-width: 280px;
+}
+
+#mosaic > div:nth-child(8n+6) {
+    min-width: 120px;
+}
+
+#mosaic > div.highlight1 {
+    background: steelblue;
+    font-size: 36px;
+}
+
+#mosaic > div.highlight2 {
+    color: black;
+    background: white;
+    min-width: 210px;
+}
+
+#mosaic > div.highlight3 {
+    background: rgb(50, 175, 175);
+    font-size: 32px;
+}
+
+#mosaic > div.highlight4 {
+    background: rgb(175, 75, 175);
+    font-size: 32px;
+}
+
+#mosaic > div:not(#brand) div:nth-child(1) {
+    pointer-events: none;
+}
+
+#mosaic > div .description {
+    display: none;
+    font-weight: normal;
+    margin-top: 10px;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+.description-show {
     display: block !important;
+}
+
+div#brand {
+    flex-direction: column;
+    background: white;
+    min-width: 280px;
+    min-height: 130px;
+    cursor: auto;
+}
+
+#name {
+    font-size: 50px;
+    transition: all .2s ease-out;
+}
+
+#name:hover {
+    cursor: pointer;
+    font-size: 55px;
+}
+
+.first {
+    color: black;
+}
+
+.reverse .first {
+    color: gray;
+}
+
+#name:hover .first {
+    color: gray;
+}
+
+#name.reverse:hover .first {
+    color: black;
+}
+
+.last {
+    color: gray;
+}
+
+.reverse .last {
+    color: black;
+}
+
+#name:hover .last {
+    color: black;
+}
+
+#name.reverse:hover .last {
+    color: gray;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+}
+
+.icons a {
+    display: block;
+    padding: 5px;
+}
+.icons img {
+    width: 40px;
+    transition: all .2s ease-out;
+}
+
+.icons a:hover {
+    filter: grayscale(.8);
+}
+
+.icons img:hover {
+    width: 50px;
+}
+
+#bottom {
+    display: none;
+    background: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    opacity: .9;
+    border-top: 2px solid white;
+}
+
+#bottom-content {
+    padding: 30px;
+    font-size: 21px;
+    color: white;
+}
+
+#bottom-close {
+    text-align: right;
+    margin: -15px;
+    cursor: pointer;
+}
+
+#bottom-descriptions div {
+    display: none;
+}
+
+h3 {
+    margin: 0;
+    margin-bottom: 10px;
 }
