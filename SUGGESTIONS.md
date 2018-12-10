@@ -1,0 +1,2 @@
+thick-skinned
+autonomous
